@@ -1,0 +1,36 @@
+<!-- Display the card for theatre -->
+
+{% load static %}
+
+
+<div class="card shadow-sm border-0 theatre-card h-100">
+  {% if theatre.image %}
+    <img src="{{ theatre.image.url }}" class="card-img-theatre rounded-top" alt="{{ theatre.name }}">
+  {% endif %}
+
+  <div class="card-body text-center">
+    <h5 class="card-title fw-bold text-dark mb-2">{{ theatre.name }}</h5>
+    <p class="text-muted small mb-3">
+      📍 {{ theatre.location }}
+    </p>
+
+    <div class="mt-auto d-flex justify-content-between align-items-center">
+  <!-- View Details -->
+  <a href="{% url 'theatre_detail' theatre.id %}" class="btn btn-primary btn-sm">
+    View Details
+  </a>
+
+  <!--Edit and Delete button -->
+  <div class="d-flex gap-2">
+    <a href="{% url 'edit_theatre' theatre.id %}" class="btn btn-outline-info btn-sm" title="Edit Theatre">
+      <i class="bi bi-pencil-square"></i>
+    </a>
+    <a href="{% url 'del_theatre' theatre.id %}" class="btn btn-outline-danger btn-sm" title="Delete Movie">
+      <i class="bi bi-trash"></i>
+    </a>
+  </div>
+</div>
+  </div>
+  </div>
+
+

@@ -1,0 +1,54 @@
+<!-- Display detail of theatre -->
+
+{% extends 'base/base.html' %}
+
+{% block title %}
+{{ theatre.name }} - CineXpress
+{% endblock %}
+
+{% block content %}
+<div class="mt-5 pt-3 mb-3">
+    <a href="{% url 'view_theatres' %}" class="btn btn-primary px-3"><i class="fa-solid fa-arrow-left"></i> Back to Theatre</a>
+</div>
+
+<div class="container py-5">
+  <!-- Theatre Header -->
+  <div class="row mb-4 align-items-center">
+    <div class="col-md-5 text-center">
+      {% if theatre.image %}
+        <img src="{{ theatre.image.url }}" class="img-fluid rounded shadow-sm" alt="{{ theatre.name }}" style="height: 250px; object-fit: cover;">
+      {% endif %}
+    </div>
+    <div class="col-md-7">
+      <h2 class="fw-bold text-primary">{{ theatre.name }}</h2>
+      <p class="text-muted fs-6 mb-3">📍 {{ theatre.location }}</p>
+      <hr>
+      <p class="text-secondary">Explore available screens and seat types for this theatre below.</p>
+    </div>
+  </div>
+
+  <!-- Screens Section -->
+  <div class="row">
+    <h4 class="fw-bold text-dark mb-3">🎞 Available Screens</h4>
+
+    {% if theatre.screens %}
+    {% for screen in theatre.screens.all %}
+    <div class="col-md-4 mb-4">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-body text-center">
+          <h5 class="card-title fw-semibold text-primary">{{ screen.name }}</h5>
+            <p class="text-muted mb-2">{{ screen.type }}</p>
+            <p class="small text-secondary">
+              💺 {{ screen.seat_count }} seats available
+            </p>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+
+    {% else %}
+      <p class="text-muted">No screens available for this theatre yet.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
