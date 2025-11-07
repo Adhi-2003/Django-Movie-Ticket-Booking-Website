@@ -1,4 +1,5 @@
-<!-- For movie edit action -->
+<!-- For update and delete the movie -->
+
 {% extends 'base/base.html' %}
 
 {% block title %}
@@ -6,18 +7,16 @@ Update Movie
 {% endblock %}
 
 {% block content %}
-<div>
-    <h2 class="text-center pt-4 mb-3">
-        Edit Movie
-    </h2>
-</div>
+
+<div><h2 class="text-center mpt-4 mb-3">Edit Movie</h2></div>
+
 <div class="container w-50 mx-auto card shadow p-3">
     <form method="post" enctype="multipart/form-data" class="p-3">
         {% csrf_token %}
         {% for field in form %}
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">{{ field.label }}</label>
-            <div class="col-sm-9 ">
+            <div class="col-sm-9 "> 
                 {{ field }}
             </div>
         </div>

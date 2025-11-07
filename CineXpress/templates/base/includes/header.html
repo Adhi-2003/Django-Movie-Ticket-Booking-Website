@@ -1,7 +1,6 @@
-<header id="site-header" class="fixed-top z-3">
+<header id="site-header" class="fixed-top z-3 mb-0">
   <nav class="navbar navbar-expand-lg custom-navbar shadow-sm">
-    <div class="container-fluid">
-
+    <div class="container-fluid"> 
       <!-- Brand -->
       <a class="navbar-brand fw-bold d-flex align-items-center text-light fs-4 me-4" href="{% url 'home_page' %}" style="letter-spacing: 1px;">
         <i class="fa-solid fa-clapperboard me-2"></i> CineXpress
@@ -17,7 +16,7 @@
         <ul class="navbar-nav mb-2 mb-lg-0">
           <li class="nav-item"><a class="nav-link fw-semibold text-light active" href="{% url 'home_page' %}"><i class="fa-solid fa-house me-1"></i> Home</a></li>
           <li class="nav-item"><a class="nav-link fw-semibold text-light" href="{% url 'view_movies' %}"><i class="fa-solid fa-film me-1"></i> Movies</a></li>
-          <li class="nav-item"><a class="nav-link fw-semibold text-light" href="{% url 'view_theatres' %}"><i class="fa-solid fa-video me-1"></i> Cinemas</a></li><!-- fa-tv or fa-city--->
+          <li class="nav-item"><a class="nav-link fw-semibold text-light" href="{% url 'view_theatres' %}"><i class="fa-solid fa-video me-1"></i> Theatres</a></li>
           <li class="nav-item"><a class="nav-link fw-semibold text-light" href="#"><i class="fa-solid fa-ticket me-1"></i> My Bookings</a></li>
         </ul>
         <!-- Center Search -->
@@ -29,13 +28,26 @@
         <ul class="navbar-nav mb-2 mb-lg-0 d-flex align-items-center">
           <li class="nav-item dropdown me-3">
             <a class="nav-link fw-semibold dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="fa-solid fa-user me-1"></i> Accounts
+              <i class="fa-solid fa-user me-1"></i> {% if user.is_authenticated %}{{user.username.capitalize}}{% else %} Accounts {% endif %}
             </a>
             <ul class="dropdown-menu dropdown-menu-dark bg-dark bg-opacity-90" style="backdrop-filter: blur(10px);">
-              <li><a class="dropdown-item text-light auth-link" href="#">Login</a></li>
-              <li><a class="dropdown-item text-light auth-link" href="#">Register</a></li>
+              {% if user.is_authenticated %}
+              <li>
+                <form action="{% url 'logout' %}" method="post">
+                  {% csrf_token %}
+                  <button type="submit" class="dropdown-item text-logout"><i class="fa-solid fa-right-from-bracket me-1"></i>
+                    Logout
+                  </button>
+                </form>
+              </li>
+              {% else %}
+              <li><a class="dropdown-item text-light auth-link" href="{% url 'signin' %}">Login</a></li>
+              <li><a class="dropdown-item text-light auth-link" href="{% url 'signup' %}">Register</a></li>
+              {% endif %}
             </ul>
           </li>
+
+          {% if user.is_staff %}
           <li class="nav-item dropdown staff-hub me-3">
             <a class="nav-link fw-semibold dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="fa-solid fa-users-gear me-1"></i> Staff Hub
@@ -43,12 +55,12 @@
             <ul class="dropdown-menu dropdown-menu-dark bg-dark bg-opacity-90" style="backdrop-filter: blur(10px);">
               <li><a class="dropdown-item text-light manage-highlight" href="{% url 'carousels_page' %}">Manage Carousels</a></li>
               <li><a class="dropdown-item text-light manage-highlight" href="{% url 'view_movies' %}">Manage Movies</a></li>
-              <li><a class="dropdown-item text-light manage-highlight" href="">Manage Bookings</a></li>
-              <li><a class="dropdown-item text-light manage-highlight" href="{% url 'view_theatres' %}">Manage Theatres</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item text-logout fw-semibold manage-highlight" href="#"><i class="fa-solid fa-right-from-bracket me-1"></i> Logout</a></li>
+               <li><a class="dropdown-item text-light manage-highlight" href="{% url 'view_theatres' %}">Manage Theatres</a></li>
+              <li><a class="dropdown-item text-light manage-highlight" href="{% url 'view_shows' %}">Manage Shows</a></li>
+              <li><a class="dropdown-item text-light manage-highlight" href="">Manage Bookings</a></li>    
             </ul>
           </li>
+          {% endif %}
         </ul>
       </div>
     </div>

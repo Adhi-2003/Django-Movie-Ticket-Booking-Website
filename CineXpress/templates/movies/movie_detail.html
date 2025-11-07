@@ -1,4 +1,4 @@
-<!-- Display detail of movies -->
+<!-- Display detail of movie -->
 
 {% extends 'base/base.html' %}
 
@@ -9,45 +9,54 @@
 {% block content %}
 <section class="container movie-container mt-5 mb-5">
   <div class="pt-4 mb-3">
-    <a href="{% url 'view_movies' %}" class="btn btn-primary px-4"><i class="fa-solid fa-arrow-left"></i> Back to Movies</a>
+    <a href="{% url 'view_movies' %}" class="btn btn-primary px-4"><i class="fa-solid fa-arrow-left"></i> Back to
+      Movies</a>
   </div>
   <div class="row pt-4 mb-3 align-items-center">
     <div class="col-12 col-md-4 mb-4 d-flex justify-content-center">
       <div class="card shadow-sm border-0" style="max-width: 300px;">
-        <img src="{{ movie.poster.url }}" alt="{{ movie.title }} Poster"
-             class="w-100 rounded" style="height: 450px; object-fit: cover;">
+        <img src="{{ movie.poster.url }}" alt="{{ movie.title }} Poster" class="w-100 rounded"
+          style="height: 450px; object-fit: cover;">
       </div>
     </div>
     <div class="col-12 col-md-8 mb-4">
       <div class="ratio ratio-16x9 rounded shadow-sm overflow-hidden">
-       <iframe width="547" height="438" src="https://www.youtube.com/embed/{{movie.youtube_trailer}}"
-                title="{{movie.title}}"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe width="547" height="438" src="https://www.youtube.com/embed/{{movie.youtube_trailer}}"
+          title="{{movie.title}}" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
     </div>
   </div>
   <div class="row mt-4">
-    <div class="col-12">
+    <div class="col-6">
       <h1 class="fw-bold text-dark mb-3">{{ movie.title }}</h1>
       <p><strong>Director:</strong> {{ movie.director }}</p>
       <p><strong>Cast:</strong> {{ movie.actors }}</p>
-      <p ><strong>Music:</strong> {{ movie.music_composer }}</p>
+      <p><strong>Music:</strong> {{ movie.music_composer }}</p>
       <p><strong>Genre:</strong> {{ movie.get_genre_display }}</p>
       <p><strong>Language:</strong> {{ movie.get_language_display }}</p>
       <p><strong>Release Date:</strong> {{ movie.release_date|date:"d F, Y" }}</p>
       <p><strong>Duration:</strong> {{ movie.get_duration }}</p>
       <p><strong>About the movie:</strong><br><br>{{ movie.description }}</p>
       <!-- <div class="mt-4 text-start">
-        <a href="#" class="btn btn-danger px-4 py-2 rounded-pill shadow-sm">Book Ticket</a>
+        <a href="#" class="btn btn-danger px-4 py-2 rounded-pill shadow-sm">Book Tickets</a>
       </div> -->
+    </div>
+    <div class="col-6">
+        <div class="row g-4 justify-content-center">
+          {% for show in movie.shows.all %}
+          <div class="col-12 col-sm-6 col-md-4 d-flex justify-content-center">
+            {% include "show/includes/show_card.html" %}
+          </div>
+          {% empty %}
+          <div class="col-12 text-center">
+            <p class="text-muted">No shows available yet.</p>
+          </div>
+          {% endfor %}
+        </div>
     </div>
   </div>
 </section>
 
-
-
-
- 
 {% endblock %}

@@ -1,3 +1,5 @@
+<!-- This will display and list the carousel images added -->
+
 {% extends 'base/base.html' %}
 
 {% block title %}
@@ -5,6 +7,7 @@ Carousel Management
 {% endblock %}
 
 {% block content %}
+
 <section class="py-4">
 
 <div class="container-fluid row d-flex  mx-auto">
@@ -27,4 +30,5 @@ Carousel Management
         {% include 'mainapp/includes/carousel_card.html' %}
     {% endfor %}
 </section>
+
 {% endblock %}

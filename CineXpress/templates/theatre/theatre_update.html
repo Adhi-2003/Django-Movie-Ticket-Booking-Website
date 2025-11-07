@@ -1,4 +1,4 @@
-<!-- For theatre edit action -->
+<!-- For update the edit theatre -->
 
 {% extends 'base/base.html' %}
 
@@ -7,11 +7,9 @@ Update Theatre
 {% endblock %}
 
 {% block content %}
-<div>
-    <h2 class="text-center pt-4 mb-3">
-        Edit Theatre
-    </h2>
-</div>
+
+<div><h2 class="text-center pt-4 mb-3">Edit Theatre</h2></div>
+
 <div class="container w-50 mx-auto card shadow p-3">
     <form method="post" enctype="multipart/form-data" class="p-3">
         {% csrf_token %}

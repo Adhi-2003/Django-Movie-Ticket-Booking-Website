@@ -10,4 +10,4 @@ __pycache__/
 media/
 
 .env
-secrets.txt
+secret.txt

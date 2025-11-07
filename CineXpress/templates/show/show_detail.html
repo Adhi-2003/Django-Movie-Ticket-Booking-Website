@@ -1,0 +1,49 @@
+<!-- Show the seats available, screen and theatre for the movie -->
+
+{% extends 'base/base.html' %}
+
+{% block title %}
+{{ show.movie.title }} 
+{% endblock %}
+
+{% block content %}
+<div class="container text-center py-4">
+  <h2 class="mb-3">{{ show.movie.title }}</h2>
+  <p class="text-muted">{{ show.screen.name }} | {{ show.show_date }} | {{ show.start_time }}</p>
+
+  <!-- Curved Screen -->
+  <div class="screen mb-4">
+    <svg width="400" height="40" viewBox="0 0 400 40">
+      <path d="M20 30 Q200 0 380 30" stroke="#b0b0b0" stroke-width="6" fill="none"/>
+    </svg>
+  </div>
+
+  <!-- Seat Layout -->
+  <div class="seat-layout mx-auto pt-4">
+    {% for row in "ABCDEFGHIJ" %}
+      <div class="seat-row"><span class="seat-label">{{ row }}</span>
+        {% for seat in "123456789abcdef" %}
+          <button type="button" class="seat-btn" onclick="toggleSeat(this)" id="{{ row }}{{ forloop.counter }}">
+            {{ forloop.counter }}
+          </button>
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </div>
+
+  <!-- Legend -->
+  <div class="legend mt-4 d-flex justify-content-center gap-4">
+    <div><span class="seat-btn seat-available"></span> Available</div>
+    <div><span class="seat-btn seat-selected"></span> Selected</div>
+    <div><span class="seat-btn seat-sold"></span> Sold</div>
+  </div>
+
+  <div class="mt-4"><button class="btn btn-success">Book Selected Seats</button></div>
+</div>
+
+<script>
+function toggleSeat(btn) {
+  btn.classList.toggle('seat-selected');
+}
+</script>
+{% endblock %}

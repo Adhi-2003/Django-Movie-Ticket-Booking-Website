@@ -60,6 +60,11 @@ class Movie(models.Model):
 
     def __str__(self):
         return self.title
+    
+    @property
+    def is_running(self):
+        return True if self.shows.all() else False
+
 
 class MovieRating(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name= 'ratings')

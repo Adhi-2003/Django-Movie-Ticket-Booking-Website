@@ -7,8 +7,10 @@ class Theatre(models.Model):
     location = models.CharField(max_length=300)
     image = models.ImageField(upload_to='theatres/', null=True, blank=True)
 
+
     def __str__(self):
         return self.name
+    
     @property
     def no_of_screens(self):
         return self.seats.count()

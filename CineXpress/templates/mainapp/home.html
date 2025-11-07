@@ -9,4 +9,20 @@ Home
 <section id="home-carousel">
     {% include "mainapp/includes/carousel.html" %}
 </section>
+
+<section>    
+<div class="container my-4">
+<div class="container my-4">
+  <div class="row">
+    {% for movie in movies %}
+      {% include "movies/includes/movie_card.html" %}
+    {% empty %}
+      <div class="col-12">
+        <p>No movies available yet.</p>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+</section>
+
 {% endblock %}

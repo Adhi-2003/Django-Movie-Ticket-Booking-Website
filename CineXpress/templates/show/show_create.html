@@ -1,0 +1,32 @@
+<!--For add shows-->
+
+{% extends 'base/base.html' %}
+
+{% block title %}
+ Add New Show
+{% endblock %}
+
+{% block content %}
+
+<div><h2 class="text-center pt-4 mb-3">Add Show</h2></div>
+
+<div class="container w-50 mx-auto card shadow p-3">
+    <form method="post" enctype="multipart/form-data" class="p-3">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label pt-4">{{ field.label }}</label>
+            <div class="col-sm-9 pt-3 ">
+                {{ field }}
+            </div>
+            <div>
+                {{field.errors}}
+            </div>
+        </div>
+        {% endfor %}
+        <div class="text-center pt-4">
+            <button type="submit" class="btn btn-success">Add Show</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

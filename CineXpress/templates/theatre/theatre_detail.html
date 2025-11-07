@@ -1,4 +1,4 @@
-<!-- Display detail of theatre -->
+<!-- Display detail info of  the theatre and screen available -->
 
 {% extends 'base/base.html' %}
 
@@ -7,8 +7,9 @@
 {% endblock %}
 
 {% block content %}
-<div class="mt-5 pt-3 mb-3">
-    <a href="{% url 'view_theatres' %}" class="btn btn-primary px-3"><i class="fa-solid fa-arrow-left"></i> Back to Theatre</a>
+
+<div class="pt-5 mt-5 ms-3">
+    <a href="{% url 'view_theatres' %}" class="btn btn-primary px-4" ><i class="fa-solid fa-arrow-left"></i> Back to Theatres</a>
 </div>
 
 <div class="container py-5">
@@ -38,9 +39,7 @@
         <div class="card-body text-center">
           <h5 class="card-title fw-semibold text-primary">{{ screen.name }}</h5>
             <p class="text-muted mb-2">{{ screen.type }}</p>
-            <p class="small text-secondary">
-              💺 {{ screen.seat_count }} seats available
-            </p>
+            <p class="small text-secondary">💺 {{ screen.seat_count }} seats available </p>
           </div>
         </div>
       </div>

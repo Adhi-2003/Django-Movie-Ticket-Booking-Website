@@ -3,12 +3,15 @@ from django.urls import reverse_lazy # type: ignore
 
 from .models import CarouselImage
 
+from movies.models import Movie
+
 # Create your views here.
 def homeView(request):
     template_name = 'mainapp/home.html'
     context = {
         # dictionary with context data.
-        'carousel_images' : CarouselImage.objects.all()
+        'carousel_images' : CarouselImage.objects.all(),
+        'movies' : Movie.objects.all()
         # The above line is equalient to `SELECT * FROM CarouselImage;`
 
     }

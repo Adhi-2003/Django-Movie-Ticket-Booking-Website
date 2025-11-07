@@ -1,0 +1,35 @@
+<!-- Display all shows and screens available for the movie -->
+
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block title %}
+Show Management
+{% endblock %}
+
+{% block content %}
+
+<section class="text-center pt-4 mb-3">
+  <a href="{% url 'add_show' %}" class="btn btn-lg px-4 text-white"
+     style="background: linear-gradient(90deg, #6a11cb, #2575fc);">
+    Add Show
+  </a>
+</section>
+
+<div class="container my-4">
+  <div class="row g-4 justify-content-center">
+    {% for show in shows %}
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center">
+        {% include "show/includes/show_card.html" %}
+      </div>
+    {% empty %}
+      <div class="col-12 text-center">
+        <p class="text-muted">No shows available yet.</p>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
+
+
+

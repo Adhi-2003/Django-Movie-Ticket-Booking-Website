@@ -1,13 +1,17 @@
-<!-- Show all theatres -->
+<!-- Display all available theatres -->
 
 {% extends "base/base.html" %}
 {% load static %}
 
+{% block title %}
+Theatre Management
+{% endblock %}
+
 {% block content %}
+
 <section class="text-center pt-4 mb-3">
   <a href="{% url 'add_theatre' %}" class="btn btn-lg px-4 text-white"
-     style="background: linear-gradient(90deg, #6a11cb, #2575fc);">
-    Add Theatre
+     style="background: linear-gradient(90deg, #6a11cb, #2575fc);"> Add Theatre
   </a>
 </section>
 
