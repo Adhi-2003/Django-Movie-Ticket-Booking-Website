@@ -5,8 +5,77 @@
 About Us - CineXpress
 {% endblock %}
 
+{% block footer %}
+  {% include 'base/includes/footer.html' %}
+{% endblock %}
+
 {% block content %}
 
-This is about page
+<section class="text-white text-center py-5" style="background-color: #2b0040;">
+  <div class="container">
+    <h1 class="display-4 fw-bold">CineXpress</h1>
+    <p class="lead">Bringing your movie world closer — one ticket at a time.</p>
+  </div>
+</section>
 
+<section class="py-5" style="background-color: #f8f7fb;">
+  <div class="container text-center">
+    <h2 class="fw-bold mb-4" style="color: #2b0040;">The Story Behind CineXpress</h2>
+    <p class="mx-auto text-muted" style="max-width: 750px;">
+      CineXpress began with a simple idea — make the joy of watching movies easy to reach.  
+      No endless queues, no confusing bookings — just a smooth, fast, and fun way to catch your favourite films.
+    </p>
+    <p class="mx-auto text-muted" style="max-width: 750px;">
+      Built in 2025 by a group of cinema lovers and tech enthusiasts, CineXpress blends simplicity with smart design.  
+      Whether it's the latest blockbuster or a local gem, we help connect you to theatres with just a few taps.
+    </p>
+    <p class="mx-auto text-muted" style="max-width: 750px;">
+      Our goal is to keep movie experiences stress-free — for fans and for theatre owners alike.
+    </p>
+  </div>
+</section>
+
+<section class="bg-light py-5">
+  <div class="container text-center">
+    <h2 class="fw-bold mb-4">Our Mission & Vision</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <h4 class="text-primary">Our Mission</h4>
+        <p>
+          To make discovering and booking movies easy and enjoyable for everyone — bringing entertainment closer to home.
+        </p>
+      </div>
+      <div class="col-md-6">
+        <h4 class="text-success">Our Vision</h4>
+        <p>
+          To become India's most loved movie ticketing platform by bringing technology, theatres, and fans together
+          under one roof.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5">
+  <div class="container text-center">
+    <h2 class="fw-bold mb-4">Why Choose CineXpress?</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <i class="bi bi-camera-reels fs-1 text-primary mb-3"></i>
+        <h5>Wide Movie Selection</h5>
+        <p class="text-muted">From regional gems to global hits — explore all your favorite movies in one place.</p>
+      </div>
+      <div class="col-md-4">
+        <i class="bi bi-ticket-detailed fs-1 text-success mb-3"></i>
+        <h5>Instant Booking</h5>
+        <p class="text-muted">Book your tickets in seconds with real-time seat availability and secure payments.</p>
+      </div>
+      <div class="col-md-4">
+        <i class="bi bi-film fs-1 text-warning mb-3"></i>
+        <h5>For Theatre Owners</h5>
+        <p class="text-muted">We empower our partners with cutting-edge management tools for showtime control, real-time analytics, and dynamic pricing.</p>.</p>
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock %}

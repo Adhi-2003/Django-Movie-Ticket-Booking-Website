@@ -44,17 +44,18 @@
       </div> -->
     </div>
     <div class="col-6">
-        <div class="row g-4 justify-content-center">
-          {% for show in movie.shows.all %}
-          <div class="col-12 col-sm-6 col-md-4 d-flex justify-content-center">
-            {% include "show/includes/show_card.html" %}
-          </div>
-          {% empty %}
-          <div class="col-12 text-center">
-            <p class="text-muted">No shows available yet.</p>
-          </div>
-          {% endfor %}
+      <h3>Now Running at : </h3>
+      <div class="row g-4 justify-content-center">
+        {% for show in movie.shows.all %}
+        <div class="col-12 col-sm-6 col-md-4 d-flex justify-content-center">
+          {% include "show/includes/show_card.html" %}
         </div>
+        {% empty %}
+        <div class="col-12 text-center">
+          <p class="text-muted">No shows available yet.</p>
+        </div>
+        {% endfor %}
+      </div>
     </div>
   </div>
 </section>

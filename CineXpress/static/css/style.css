@@ -4,9 +4,11 @@
   margin: 0;
   box-sizing: border-box;
 }
-main {
+
+/* main {
   margin-bottom: 50px;
-}
+} */
+
 /* Navbar header.html */
 .navbar {
   background:linear-gradient(90deg, #0b0011, #1b0033, #30004d, #52006b);
@@ -51,6 +53,7 @@ main {
 
 main {
   margin-top: 60px;
+  margin-bottom: 50px;
 
 /* Manage carousel img size home.html */
   #home-carousel {
@@ -99,7 +102,7 @@ main {
 
   /* ------------------ */
 
-/* Make the movie poster in correct pixel carousel_card.html */
+/* Make the movie poster in correct pixel movie_card.html */
   .card-img-top { 
     width: 100%; 
     height: 440px; 
@@ -119,14 +122,20 @@ main {
   }
 /* ------------------- */
 
-/* Make the show and movie poster correct pixel show_card.html */
-  .card-img-show { 
-    width: 100%; 
-    height: 440px; 
-    object-fit: fill; 
-    object-position: top; 
-    display: block;
-  }
+/* Make the movie show detail and screen in correct pixel in movie_details.html and show_card.html */
+.show-card {
+  width: 100%;
+  min-height: 270px; 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.show-card .card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 /* ------------------ */
 
 }
@@ -175,11 +184,11 @@ main {
 }
 /* ----------------------- */
 
+footer a:hover {
+  color: #ff4d6d; /* or a shade you like */
+  text-decoration: underline;
+}
 
-.glass-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.glass-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-}
+
+
+

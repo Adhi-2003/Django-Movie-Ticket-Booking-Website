@@ -1,6 +1,7 @@
 
-from django.shortcuts import render 
+from django.shortcuts import render,get_object_or_404
 from django.urls import reverse_lazy
+
 
 # Create your views here.
 from .models import Theatre
@@ -34,3 +35,5 @@ class RemoveTheatre(DeleteView):
     model = Theatre
     template_name = 'theatre/theatre_delete.html'
     success_url = reverse_lazy('view_theatres')
+
+

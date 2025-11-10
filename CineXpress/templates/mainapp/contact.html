@@ -1,13 +1,80 @@
 {% extends "base/base.html" %}
 {% load static %}
 
-
 {% block title %}
-Contact Us - CineXpress
+Contact CineXpress
+{% endblock %}
+
+{% block footer %}
+  {% include 'base/includes/footer.html' %}
 {% endblock %}
 
 {% block content %}
+<section class="py-2 bg-light text-dark">
+  <div class="container">
 
-This is contact about
+    <div class="text-center mb-4">
+      <h2 class="fw-bold mb-2">We'd Love to Hear from You!</h2>
+      <p class="text-muted">For inquiries, suggestions, or collaborations, the CineXpress team is ready to assist.</p>
+    </div>
 
+    <div class="row text-center g-4">
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <i class="bi bi-person-circle fs-1 text-primary mb-3"></i>
+            <h5 class="fw-bold">Adhiyamaan</h5>
+            <p class="text-muted mb-1">Co-Founder & Technical Lead</p>
+            <p class="small mb-1">📧 adhi@cinexpress.com</p>
+            <p class="small">📞 +91 98765 43210</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <i class="bi bi-person-circle fs-1 text-primary mb-3"></i>
+            <h5 class="fw-bold">Mounica Depur</h5>
+            <p class="text-muted mb-1">Design & Media</p>
+            <p class="small mb-1">📧 mouni@cinexpress.com</p>
+            <p class="small">📞 +91 98652 87410</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <i class="bi bi-person-circle fs-1 text-primary mb-3"></i>
+            <h5 class="fw-bold">Chiru Varma</h5>
+            <p class="text-muted mb-1">Tech & Support</p>
+            <p class="small mb-1">📧chiru@cinexpress.com</p>
+            <p class="small">📞 +91 98432 65721</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-5">
+      <h6 class="fw-bold text-uppercase">Head Office</h6>
+      <p class="mb-1 text-muted">CineXpress Studio, Bengaluru</p>
+      <p class="mb-1"><i class="bi bi-envelope"></i> supportdesk@cinexpress.com</p>
+      <p><i class="bi bi-telephone"></i> +91 90579 00888</p>
+    </div>
+
+    <div class="text-center mt-4">
+      <h6 class="fw-bold text-uppercase mb-3">Stay Connected</h6>
+      <p class="mb-1 text-muted">Follow us for updates, offers, and behind-the-scenes fun!</p>
+      <div class="mt-2">
+        <a href="https://www.facebook.com/share/1BQ3PcVywk/" target="_blank" class="text-dark mx-2 fs-4"><i class="bi bi-facebook"></i></a>
+        <a href="https://wa.me/919205004404?text=Hi%2C%20I%20visited%20your%20website%20and%20am%20interested%20in%20a%20course.%20Please%20assist%20me.%20Thank%20you!" 
+           target="_blank" class="text-dark mx-2 fs-4"><i class="bi bi-whatsapp"></i></a>
+        <a href="https://www.instagram.com/itvedant?igsh=c3Nza2NnbXAzc2du" target="_blank" class="text-dark mx-2 fs-4"><i class="bi bi-instagram"></i></a>
+        <a href="https://www.itvedant.com/" target="_blank" class="text-dark mx-2 fs-4"><i class="bi bi-globe"></i></a>
+      </div>
+    </div>
+
+  </div>
+</section>
 {% endblock %}
