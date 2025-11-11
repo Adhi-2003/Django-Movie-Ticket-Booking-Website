@@ -47,8 +47,10 @@
 
       
       <!-- Buttons -->
+     
       <div class="mt-auto d-flex justify-content-between align-items-center">
-        <a href="{% url 'movie_detail' movie.id %}" class="btn btn-primary btn-sm">Book Now</a>
+        {% if not user.is_staff %}<a href="{% url 'movie_detail' movie.id %}" class="btn btn-primary btn-sm">Book Now</a>{% endif %}
+         {% if user.is_staff %}
         <div class="d-flex gap-2">
           <a href="{% url 'edit_movie' movie.id %}" class="btn btn-outline-info btn-sm" title="Edit Movie">
             <i class="bi bi-pencil-square"></i>
@@ -57,6 +59,7 @@
             <i class="bi bi-trash"></i>
           </a>
         </div>
+        {% endif %}
       </div>
     </div>
   </div>

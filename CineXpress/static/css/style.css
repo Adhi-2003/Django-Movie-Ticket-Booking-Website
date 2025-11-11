@@ -5,9 +5,7 @@
   box-sizing: border-box;
 }
 
-/* main {
-  margin-bottom: 50px;
-} */
+
 
 /* Navbar header.html */
 .navbar {
@@ -58,9 +56,10 @@ main {
 /* Manage carousel img size home.html */
   #home-carousel {
    .custom-carousel img {
-    aspect-ratio: 16/7;
+    aspect-ratio: 17/5.3;
     object-fit: fill;
     object-position: top;
+    
   }
 } 
 /* ----------------- */
@@ -84,6 +83,12 @@ main {
         object-position: top;
       }
     }
+  }
+
+  .card1 img {
+    height: 200px;
+    width: 300px;
+    object-fit: fill;
   }
 /* ------------------- */
 
@@ -182,10 +187,8 @@ main {
   background: #f9f9f9; 
   border-color: #bbb; 
 }
+
 /* ----------------------- */
-
-
-
 
 
 

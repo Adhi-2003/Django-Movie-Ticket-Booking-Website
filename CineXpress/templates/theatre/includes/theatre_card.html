@@ -17,6 +17,7 @@
   <a href="{% url 'theatre_detail' theatre.id %}" class="btn btn-primary btn-sm">View Details</a>
 
   <!--Edit and Delete button -->
+   {% if user.is_staff %}
   <div class="d-flex gap-2">
     <a href="{% url 'edit_theatre' theatre.id %}" class="btn btn-outline-info btn-sm" title="Edit Theatre">
       <i class="bi bi-pencil-square"></i>
@@ -25,6 +26,7 @@
       <i class="bi bi-trash"></i>
     </a>
   </div>
+  {% endif %}
   </div>
  </div>
 </div>

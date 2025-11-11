@@ -1,0 +1,32 @@
+<!-- {% extends 'base/base.html' %}
+{% block title %}{{ screen.name }} - Now Showing{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <h3 class="text-center text-primary mb-4">
+    🎥 Movies in {{ screen.name }}
+  </h3>
+
+  <div class="row">
+    {% if shows %}
+      {% for show in shows %}
+        <div class="col-md-4 mb-4">
+          <div class="card shadow-sm border-0 h-100">
+            {% if show.movie.poster %}
+              <img src="{{ show.movie.poster.url }}" class="card-img-top" alt="{{ show.movie.title }}">
+            {% endif %}
+            <div class="card-body text-center">
+              <h5 class="fw-bold text-dark">{{ show.movie.title }}</h5>
+              <p class="text-muted mb-0">{{ show.show_date }}</p>
+              <p class="small text-secondary">🕒 {{ show.start_time|time:"h:i A" }}</p>
+              <a href="{% url 'show_detail' show.id %}" class="btn btn-primary btn-sm mt-2">View Details</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p class="text-muted text-center">No movies currently showing in this screen.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %} -->

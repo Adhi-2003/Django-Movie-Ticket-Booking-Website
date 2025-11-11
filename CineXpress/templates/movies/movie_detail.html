@@ -9,8 +9,9 @@
 {% block content %}
 <section class="container movie-container mt-5 mb-5">
   <div class="pt-4 mb-3">
-    <a href="{% url 'view_movies' %}" class="btn btn-primary px-4"><i class="fa-solid fa-arrow-left"></i> Back to
-      Movies</a>
+    <a href="{% url 'view_movies' %}" class="btn btn-primary px-4">
+      <i class="fa-solid fa-arrow-left"></i> Back to Movies
+    </a>
   </div>
   <div class="row pt-4 mb-3 align-items-center">
     <div class="col-12 col-md-4 mb-4 d-flex justify-content-center">
@@ -39,9 +40,6 @@
       <p><strong>Release Date:</strong> {{ movie.release_date|date:"d F, Y" }}</p>
       <p><strong>Duration:</strong> {{ movie.get_duration }}</p>
       <p><strong>About the movie:</strong><br><br>{{ movie.description }}</p>
-      <!-- <div class="mt-4 text-start">
-        <a href="#" class="btn btn-danger px-4 py-2 rounded-pill shadow-sm">Book Tickets</a>
-      </div> -->
     </div>
     <div class="col-6">
       <h3>Now Running at : </h3>

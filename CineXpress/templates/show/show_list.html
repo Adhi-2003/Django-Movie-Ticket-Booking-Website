@@ -9,14 +9,16 @@ Show Management
 
 {% block content %}
 
+{% if user.is_staff %}
 <section class="text-center pt-4 mb-3">
   <a href="{% url 'add_show' %}" class="btn btn-lg px-4 text-white"
      style="background: linear-gradient(90deg, #6a11cb, #2575fc);">
     Add Show
   </a>
 </section>
+{% endif %}
 
-<div class="container my-4">
+<div class="container pt-5 my-4">
   <div class="row g-4 justify-content-center">
     {% for show in shows %}
       <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center">
