@@ -1,0 +1,28 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block title %}
+Search Results
+{% endblock %}
+
+{% block content %}
+<div class="container pt-5 my-4">
+  <h2 class="text-center mb-4 text-info fw-bold">
+    🔍 Search Results{% if query %} for “{{ query }}”{% endif %}
+  </h2>
+
+  {% if movies %}
+    <div class="row">
+      {% for movie in movies %}
+        {% include "movies/includes/movie_card.html" %}
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="text-center py-5">
+      <img src="{% static 'images/no-results.png' %}" alt="No results" style="width: 200px; opacity: 0.7;">
+      <h5 class="text-muted mt-3">No movies found matching your search.</h5>
+      <a href="{% url 'home_page' %}" class="btn btn-info mt-3">Go Back Home</a>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

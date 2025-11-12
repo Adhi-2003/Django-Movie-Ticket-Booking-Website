@@ -1,0 +1,192 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}
+Book Seats – {{ show.movie.title }}
+{% endblock %}
+
+{% block content %}
+<div class="container text-center py-4">
+  <h2 class="mb-3">{{ show.movie.title }}</h2>
+  <p class="text-muted">
+    {{ show.screen.theatre.name }} – {{ show.screen.name }} |
+    {{ show.show_date }} | {{ show.start_time }}
+  </p>
+
+  <div>
+    <p class="text-warning">Cancelled Tickets will be not be refunded after payment is completed.</p>
+  </div>
+  <!-- Curved Screen -->
+  <div class="screen mb-4">
+    <svg width="400" height="40" viewBox="0 0 400 40">
+      <path d="M20 30 Q200 0 380 30" stroke="#b0b0b0" stroke-width="6" fill="none"/>
+    </svg>
+    <p class="text-secondary small">SCREEN</p>
+  </div>
+
+  <!-- Seat Layout -->
+  <form method="POST" action="{% url 'confirm_booking' show.id %}" onsubmit="return validateForm()">
+    {% csrf_token %}
+    <div class="seat-layout mx-auto pt-4">
+      {% for row, seats_in_row in seat_map.items %}
+        <div class="seat-row mb-2">
+          <span class="seat-label me-2 fw-bold">{{ row }}</span>
+          {% for seat in seats_in_row %}
+            {% if seat.id in booked_seat_ids %}
+              <button type="button" class="seat-btn seat-sold" disabled>{{ seat.number|slice:"1:" }}</button>
+            {% else %}
+              <button type="button" class="seat-btn seat-available"
+                      data-seat-id="{{ seat.id }}"
+                      onclick="toggleSeat(this)">
+                {{ seat.number|slice:"1:" }}
+              </button>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Legend -->
+    <div class="legend mt-4 d-flex justify-content-center gap-4">
+      <div><span class="seat-btn seat-available"></span> Available</div>
+      <div><span class="seat-btn seat-selected"></span> Selected</div>
+      <div><span class="seat-btn seat-sold"></span> Booked</div>
+    </div>
+
+    <input type="hidden" name="selected_seats" id="selectedSeatsInput">
+
+    <!-- Viewer Details -->
+    <div class="mt-5 text-center">
+      <h5 class="fw-bold mb-3 text-info">Viewer Information for Selected Seats</h5>
+      <div id="viewerDetailsContainer" class="mx-auto" style="max-width: 800px;"></div>
+    </div>
+
+    <!-- Booking Button -->
+    <div class="mt-4">
+      <button type="submit" id="bookBtn" class="btn btn-success px-4" disabled>
+        Confirm Booking
+      </button>
+    </div>
+  </form>
+</div>
+<div class="d-flex justify-content-center">
+    <a href="{% url 'home_page' %}" class="btn btn-warning btn-sm">⬅️Book another Movie</a>
+</div>
+<script>
+let selectedSeats = [];
+
+function toggleSeat(btn) {
+  const seatId = btn.dataset.seatId;
+  const seatNumber = btn.innerText.trim();
+  const container = document.getElementById('viewerDetailsContainer');
+  const bookBtn = document.getElementById('bookBtn');
+
+  if (btn.classList.contains('seat-selected')) {
+    // Deselect seat
+    btn.classList.remove('seat-selected');
+    selectedSeats = selectedSeats.filter(s => s.id !== seatId);
+    document.getElementById(`viewer-${seatId}`)?.remove();
+  } else {
+    // Select seat
+    btn.classList.add('seat-selected');
+    selectedSeats.push({ id: seatId, number: seatNumber });
+
+    // Add viewer info section
+    const wrapper = document.createElement('div');
+    wrapper.classList.add('card', 'p-3', 'mb-3', 'text-start', 'shadow-sm');
+    wrapper.id = `viewer-${seatId}`;
+    wrapper.innerHTML = `
+      <h6 class="text-dark fw-semibold mb-3">Seat ${seatNumber}</h6>
+      <div class="row g-3">
+        <div class="col-md-4">
+          <label class="form-label small text-secondary">Full Name</label>
+          <input type="text" class="form-control viewer-name" name="viewer_name_${seatId}" required placeholder="Enter name">
+        </div>
+        <div class="col-md-4">
+          <label class="form-label small text-secondary">Date of Birth</label>
+          <input type="date" class="form-control viewer-dob" name="viewer_dob_${seatId}" required>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label small text-secondary">Gender</label>
+          <select class="form-select viewer-gender" name="viewer_gender_${seatId}" required>
+            <option value="">Select gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>`;
+    container.appendChild(wrapper);
+  }
+
+  document.getElementById('selectedSeatsInput').value = selectedSeats.map(s => s.id).join(',');
+  checkFormReady();
+}
+
+function checkFormReady() {
+  const bookBtn = document.getElementById('bookBtn');
+  bookBtn.disabled = selectedSeats.length === 0;
+}
+
+function validateForm() {
+  const names = document.querySelectorAll('.viewer-name');
+  const dobs = document.querySelectorAll('.viewer-dob');
+  const genders = document.querySelectorAll('.viewer-gender');
+
+  for (let i = 0; i < names.length; i++) {
+    if (!names[i].value.trim() || !dobs[i].value || !genders[i].value) {
+      alert('Please fill all viewer details before confirming booking.');
+      return false;
+    }
+  }
+  return true;
+}
+</script>
+
+<style>
+/* Seats */
+.seat-btn {
+  width: 30px;
+  height: 30px;
+  margin: 3px;
+  border: none;
+  border-radius: 6px;
+  background-color: #cfd8dc;
+  color: #000;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.seat-btn:hover {
+  background-color: #90caf9;
+}
+.seat-selected {
+  background-color: #43a047 !important;
+  color: white;
+}
+.seat-sold {
+  background-color: #b71c1c !important;
+  color: white;
+  cursor: not-allowed;
+}
+.screen svg {
+  display: block;
+  margin: auto;
+}
+.seat-label {
+  width: 20px;
+  display: inline-block;
+  text-align: right;
+}
+.legend div {
+  font-size: 14px;
+}
+.card h6 {
+  font-weight: 600;
+}
+button[disabled] {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+</style>
+{% endblock %}

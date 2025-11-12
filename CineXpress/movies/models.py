@@ -1,4 +1,5 @@
 from django.db import models 
+from django.contrib.auth.models import User
 
 from django.core.validators import MinValueValidator, MaxValueValidator  
 from django.utils.timezone import now
@@ -67,6 +68,7 @@ class Movie(models.Model):
 
 
 class MovieRating(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='ratings')
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name= 'ratings')
     comment = models.CharField(max_length=50)
     # IMDb-style rating (e.g., 8.5)

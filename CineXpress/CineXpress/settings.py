@@ -45,6 +45,10 @@ INSTALLED_APPS = [
     'movies',
     'theatre',
     'show',
+    'booking',
+
+    
+    'payments'
 ]
 
 MIDDLEWARE = [

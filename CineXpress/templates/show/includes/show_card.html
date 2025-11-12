@@ -22,7 +22,7 @@
     </div>
 
     <div class="mt-auto">
-      {% if not user.is_staff %}<a href="{% url 'show_detail' show.id %}" class="btn btn-primary btn-sm">Book Tickets</a>{% endif %}
+      {% if not user.is_staff %}<a href="{% url 'book_seats' show.id %}" class="btn btn-primary btn-sm">Book Tickets</a>{% endif %}
       {% if user.is_staff %}
       <div class="d-flex justify-content-center gap-2 mt-2">
         <a href="{% url 'edit_show' show.id %}" class="btn btn-outline-info btn-sm" title="Edit">

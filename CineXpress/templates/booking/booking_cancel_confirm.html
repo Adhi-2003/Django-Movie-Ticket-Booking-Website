@@ -1,0 +1,21 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Cancel Booking{% endblock %}
+
+{% block content %}
+<div class="container py-5 text-center">
+  <div class="card shadow p-4 mx-auto" style="max-width: 600px;">
+    <h3 class="text-danger mb-3">Cancel Booking?</h3>
+    <p>You are about to cancel your booking for <strong>{{ booking.movie.title }}</strong>.</p>
+    <p>This action cannot be undone. Do you wish to proceed?</p>
+
+    <form method="post">
+      {% csrf_token %}
+      <div class="mt-4 d-flex justify-content-center gap-3">
+        <a href="{% url 'booking_detail' booking.id %}" class="btn btn-secondary px-4">Go Back</a>
+        <button type="submit" class="btn btn-danger px-4">Yes, Cancel Booking</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

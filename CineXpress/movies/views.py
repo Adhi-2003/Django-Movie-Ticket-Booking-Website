@@ -34,3 +34,31 @@ class RemoveMovie(DeleteView):
     model = Movie
     template_name = 'movies/movie_delete.html'
     success_url = reverse_lazy('view_movies')
+
+
+from django.shortcuts import render
+from django.db.models import Q
+from .models import Movie
+
+def searchView(request):
+    query = request.GET.get('q', '').strip()
+    movies = Movie.objects.all()
+
+    if query:
+        movies = movies.filter(
+            Q(title__icontains=query) |
+            Q(director__icontains=query) |
+            Q(actors__icontains=query) |
+            Q(music_composer__icontains=query) |
+            Q(genre__icontains=query) |
+            Q(language__icontains=query) |
+            Q(description__icontains=query)
+        ).distinct()
+
+    context = {
+        'query': query,
+        'movies': movies,
+        'search_bar': True
+    }
+
+    return render(request, 'movies/search_results.html', context)
