@@ -6,29 +6,39 @@ Login
 
 {% block content %}
 <div class="container d-flex py-5 justify-content-center align-items-center min-vh-80">
-    <div class="card shadow p-4">
-        <h2 class="mb-4 text-center">
-            Log in
-        </h2>
-        <form method="post">
-            {% csrf_token %}
-            {% for field in form %}
-            <div class="mb-3">
-                <label for="{{field.id_for_label}}" class="form-label">{{field.label}}</label>
-                {{field}} <!-- This renders out to become input field -->
+  <div class="card shadow-lg p-4 border-0" style="max-width: 400px; width: 100%; border-radius: 15px;">
+    <h2 class="mb-4 text-center fw-bold" style="background: linear-gradient(90deg, #6a11cb, #2575fc); -webkit-background-clip: text; color: transparent;">
+      Log in
+    </h2>
 
-                {% if field.errors %}
-                <div class="text-danger small">
-                    {{field.errors | striptags }}
-                </div>
-                {% endif %}
-            </div>
-            {% endfor %}
-            <button class="btn btn-primary center" type="submit">Log in</button>
-        </form>
-        <span>New here? <a href="{% url 'signup' %}">Signup here !!!</a></span>
-        <span><a href="{% url 'send-otp' %}">Forgot password?</a></span>
+    <form method="post">
+      {% csrf_token %}
+      {% for field in form %}
+      <div class="mb-3">
+        <label for="{{field.id_for_label}}" class="form-label fw-semibold text-dark">{{field.label}}</label>
+        {{field}}
+        {% if field.errors %}
+        <div class="text-danger small">
+          {{field.errors | striptags }}
+        </div>
+        {% endif %}
+      </div>
+      {% endfor %}
+      <div class="text-center mt-3">
+        <button class="btn text-white fw-semibold w-100 py-2"
+          style="background: linear-gradient(90deg, #6a11cb, #2575fc); border: none; border-radius: 8px;"
+          type="submit">
+          Log in
+        </button>
+      </div>
+    </form>
+
+    <div class="text-center mt-3">
+      <span class="d-block mb-1 text-muted">New here?
+        <a href="{% url 'signup' %}" class="fw-semibold text-decoration-none" style="color: #2575fc;">Signup here</a>
+      </span>
+      <a href="{% url 'send-otp' %}" class="text-decoration-none" style="color: #6a11cb;">Forgot password?</a>
     </div>
-
+  </div>
 </div>
 {% endblock %}
